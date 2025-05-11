@@ -1,0 +1,260 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unlock Breakthrough Ideas with Lucid Dreaming | Lucid Dream Often</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom styles to match original form aesthetics */
+    .embeddable-buttondown-form label {
+      display: block;
+      color: #fff; /* White text for labels in hero/CTA sections */
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .embeddable-buttondown-form input[type="email"] {
+      flex: 1;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      border: none;
+      color: #1f2937; /* Gray-900 for text */
+      font-size: 1rem;
+      width: 100%;
+    }
+    .embeddable-buttondown-form input[type="submit"] {
+      background-color: #facc15; /* Yellow-400 */
+      color: #1f2937; /* Gray-900 */
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .embeddable-buttondown-form input[type="submit"]:hover {
+      background-color: #eab308; /* Yellow-500 */
+    }
+    /* Ensure responsive form layout */
+    @media (min-width: 640px) {
+      .embeddable-buttondown-form {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+      .embeddable-buttondown-form label {
+        display: none; /* Hide label on larger screens to match original */
+      }
+      .embeddable-buttondown-form input[type="email"] {
+        flex: 1;
+      }
+      .embeddable-buttondown-form input[type="submit"] {
+        flex-shrink: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20">
+    <div class="container mx-auto px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        Unlock Breakthrough Ideas in 14 Days with Lucid Dreaming
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+        Discover a proven, science-backed tool to tap your subconscious, overcome creative blocks, and deliver game-changing campaigns—designed for 7-figure creative entrepreneurs.
+      </p>
+      <div class="max-w-md mx-auto">
+        <form
+          action="https://buttondown.com/api/emails/embed-subscribe/lucid_dream_often"
+          method="post"
+          target="popupwindow"
+          onsubmit="window.open('https://buttondown.com/lucid_dream_often', 'popupwindow')"
+          class="embeddable-buttondown-form"
+        >
+          <label for="bd-email">Enter your email</label>
+          <input type="email" name="email" id="bd-email" placeholder="Enter your email" required />
+          <input type="submit" value="I'm In!" />
+        </form>
+        <p class="text-sm mt-4">
+          Free Mini-eBook: <em>The Creative Entrepreneur’s Guide to Lucid Dreaming for Breakthrough Ideas</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain Points Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+        Struggling to Stay Creatively Sharp in a High-Stakes World?
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Creative Blocks</h3>
+          <p class="text-gray-600">
+            Deadlines loom, but inspiration feels stuck, leaving you frustrated and second-guessing your edge.
+          </p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Burnout Pressure</h3>
+          <p class="text-gray-600">
+            Juggling clients and leadership drains your mental clarity, making bold ideas harder to find.
+          </p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Competitive Stakes</h3>
+          <p class="text-gray-600">
+            You need disruptive campaigns to win awards and high-value contracts, but competitors are closing in.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Proposition Section -->
+  <section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+        Lucid Dreaming: Your Secret Weapon for Creative Mastery
+      </h2>
+      <div class="max-w-4xl mx-auto space-y-12">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="md:w-1/2">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Backed by Science</h3>
+            <p class="text-gray-600">
+              Studies in <em>Nature</em> and <em>Journal of Neuroscience</em> show lucid dreaming activates your brain’s creative centers, helping you generate novel ideas—like Salvador Dalí did for his iconic art.
+            </p>
+          </div>
+          <div class="md:w-1/2">
+            <img src="https://via.placeholder.com/400x300?text=Brain+Creativity" alt="Brain creativity illustration" class="rounded-lg shadow-lg">
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+          <div class="md:w-1/2">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Fits Your Busy Life</h3>
+            <p class="text-gray-600">
+              Master lucid dreaming with simple, 10-minute daily techniques—like dream journaling and reality checks—that deliver results in just 14 days, without disrupting your schedule.
+            </p>
+          </div>
+          <div class="md:w-1/2">
+            <img src="https://via.placeholder.com/400x300?text=Entrepreneur+Working" alt="Entrepreneur working" class="rounded-lg shadow-lg">
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="md:w-1/2">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Drives Business Wins</h3>
+            <p class="text-gray-600">
+              Use lucid dreams to brainstorm viral campaigns, solve creative challenges, and win awards. Creative directors have turned dream insights into million-dollar ad concepts—now it’s your turn.
+            </p>
+          </div>
+          <div class="md:w-1/2">
+            <img src="https://via.placeholder.com/400x300?text=Creative+Success" alt="Creative success" class="rounded-lg shadow-lg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+        What Creative Leaders Are Saying
+      </h2>
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <p class="text-gray-600 italic mb-4">
+            “Lucid dreaming helped me dream up a campaign that went viral and landed us a $500K contract. It’s a game-changer for staying ahead.”
+          </p>
+          <p class="text-gray-900 font-semibold">— Sarah M., Creative Director</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <p class="text-gray-600 italic mb-4">
+            “I was skeptical, but the simple techniques worked in just 10 days. Now I tap my subconscious for ideas I’d never get otherwise.”
+          </p>
+          <p class="text-gray-900 font-semibold">— James R., Branding Agency Founder</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        Ready to Unlock Your Creative Potential?
+      </h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">
+        Get our free mini-eBook, <em>The Creative Entrepreneur’s Guide to Lucid Dreaming for Breakthrough Ideas</em>, and learn how to generate game-changing ideas in just 14 days.
+      </p>
+      <div class="max-w-md mx-auto">
+        <form
+          action="https://buttondown.com/api/emails/embed-subscribe/lucid_dream_often"
+          method="post"
+          target="popupwindow"
+          onsubmit="window.open('https://buttondown.com/lucid_dream_often', 'popupwindow')"
+          class="embeddable-buttondown-form"
+        >
+          <label for="bd-email-cta">Enter your email</label>
+          <input type="email" name="email" id="bd-email-cta" placeholder="Enter your email" required />
+          <input type="submit" value="I'm In!" />
+        </form>
+        <p class="text-sm mt-4">
+          No fluff, no hype—just practical tools for 7-figure creatives.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-6 text-center">
+      <p>© 2025 Lucid Dream Often. All rights reserved.</p>
+      <p class="mt-2">
+        <a href="#" class="hover:underline">Privacy Policy</a> | 
+        <a href="#" class="hover:underline">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
